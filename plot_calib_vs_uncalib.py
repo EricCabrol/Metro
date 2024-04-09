@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 data_folder = './data/'
-trip_1 = 'L4_Montparnasse_Reaumur_bag-2024-01-25_12-16-45'
+trip_1 = 'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45'
 
 # Caution : selection of a time window
 fig = go.Figure()
