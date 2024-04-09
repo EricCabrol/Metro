@@ -4,8 +4,8 @@ import plotly.graph_objects as go
 # Comparison of two trips - No filter
 
 data_folder = './data/'
-trip_1 = 'L4_Montparnasse_Reaumur_bag-2024-01-25_12-16-45'
-trip_2 = 'L13_Champs_Pernety_bag-2024-01-25_18-41-33'
+trip_1 = 'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45'
+trip_2 = 'L13_Champs_-_Pernety_bag-2024-01-25_18-41-33'
 
 # Caution : possible selection of a time window + addition of offset
 

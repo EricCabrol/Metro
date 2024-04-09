@@ -2,3 +2,4 @@ data/*
 zip/*
 old_git.7z
 .conda/*
+z*.py
