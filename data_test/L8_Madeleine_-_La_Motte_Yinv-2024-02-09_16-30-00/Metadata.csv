@@ -1,0 +1,2 @@
+version,device name,recording epoch time,recording time,recording timezone,platform,appVersion,device id,sensors,sampleRateMs
+3,Pixel 4 XL,1707496200789,2024-02-09_16-30-00,Europe/Paris,android,1.28,fc85662c-13cf-4130-b4fa-680523b125bc,Accelerometer|Annotation|TotalAcceleration|AccelerometerUncalibrated,0||0|0
