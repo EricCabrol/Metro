@@ -4,6 +4,7 @@ import unidecode
 from difflib import SequenceMatcher
 
 folder = './data'
+# Find the trips subdirectories starting by a L in ./data
 trips = [ f.name for f in os.scandir(folder) if f.is_dir() and f.name.startswith('L')]
 
 stations = {
