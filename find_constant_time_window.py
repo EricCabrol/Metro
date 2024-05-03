@@ -1,9 +1,12 @@
 import pandas as pd
 import plotly.graph_objects as go
 from scipy.signal import filtfilt, butter
+from pathlib import Path
 
-data_folder = './data/'
-trip_1 = 'L4_Montparnasse_Reaumur_bag-2024-01-25_12-16-45'
+data_folder = Path('./data')
+
+trip_1 = 'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45'
+
 fs_uncalibrated = 400 # acceleration sampling frequency
 tol = 0.3 # tolerance to consider the signal constant (m/s^2)
 min_stop_duration = 15 # minimum time window (s)
@@ -13,13 +16,13 @@ min_stop_duration = 15 # minimum time window (s)
 
 
 # Filter parameters
-N = 4
-Wn = 2 # low-pass frequency
+N = 4 # order of the filter
+Wn = 2 # cutoff frequency
 # b1, a1 = butter(N, Wn, 'low',fs=50) # Calibrated accel is sampled at 50 Hz
 b2, a2 = butter(N, Wn, 'low',fs=fs_uncalibrated) # Uncalibrated accel is sampled at 400 Hz
 
 
-df = pd.read_csv(data_folder+trip_1+'/AccelerometerUncalibrated.csv')
+df = pd.read_csv(data_folder / trip_1 / 'AccelerometerUncalibrated.csv')
 df['time'] = df['time']-df['time'][0] # Reset initial time
 df['y_filt'] = filtfilt(b2, a2, df['y']) # Add a filtered column
 
@@ -28,11 +31,11 @@ begin = 0 # init
 end = 0 # index init
 df['stop'] = 0 # initialize a new column, boolean like (True if metro stopped) 
 
-with open(data_folder+trip_1+"/timestamps.txt", mode="w") as output_file:
+with open(data_folder / trip_1 / "timestamps.txt", mode="w") as output_file:
     output_file.write("Timestamps for trip "+trip_1+"\n")
 
     for ind in df.index:
-        if abs(df['y_filt'][ind]-tmp) < tol: # changed y to y_filt
+        if abs(df['y_filt'][ind]-tmp) < tol: # working on filtered acceleration
             end = ind
         else:
             # print(begin, end)
