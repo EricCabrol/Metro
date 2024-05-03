@@ -4,7 +4,9 @@
 
 **Plotting data**
 
-- `plot_one_trip.py` : plots calibrated and uncalibrated data for a single trip
+- `plot_all_decel.py` : plots all calibrated accelerations found in a folder
+
+- `plot_two_trips.py` allows to compare two recordings, both for calibrated and uncalibrated data
 
 
 **Identifying stops from acceleration recordings**
@@ -21,8 +23,7 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 ## Utilities
 
 
-1. Zip files must be manually downloaded from Google Drive into `zip` folder
-2. `unzip_recordings.py` allows to unzip recordings in `data` 
-3. `remove_total_accel.py` removes `TotalAcceleration.csv` files, because they contain the same data as `AccelerometerUncalibrated.csv`
-3. `plot_two_trips.py` allows to compare two recordings, both for calibrated and uncalibrated data
-4. 
+NB : zip files exported from SensorLogger must be manually downloaded from Google Drive into `zip` folder
+
+1. `unzip_recordings.py` allows to unzip recordings in `data` 
+2. `remove_total_accel.py` removes `TotalAcceleration.csv` files, because they contain the same data as `AccelerometerUncalibrated.csv`
