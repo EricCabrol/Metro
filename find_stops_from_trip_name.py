@@ -6,7 +6,7 @@ from difflib import SequenceMatcher
 folder = './data'
 # Find the trips subdirectories starting by a L in ./data
 trips = [ f.name for f in os.scandir(folder) if f.is_dir() and f.name.startswith('L')]
-
+# Definition of stations per line
 stations = {
     'L3' : ('Saint-Lazare','Havre-Caumartin','Opera','Quatre-Septembre','Bourse','Sentier','Reaumur'),
     'L4' : ('Montparnasse','St-Placide','St-Sulpice','St-Germain','Odeon','St-Michel','Cite','Chatelet','Les Halles','Etienne Marcel','Reaumur'),
@@ -15,8 +15,6 @@ stations = {
     'L12' : ('Montparnasse','Falguiere','Pasteur','Volontaires'),
     'L13' : ('Pernety','Gaite','Montparnasse','Duroc','St Francois Xavier','Varenne','Invalides','Champs-Elysees','Miromesnil','St-Lazare')
 }
-
-# ('Montparnasse','Reaumur','Odeon','Dupleix','Madeleine','Volontaires','Raspail','Pasteur','Les Halles','Duroc')
 
 for trip in trips:
     print(trip)

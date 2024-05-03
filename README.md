@@ -6,7 +6,9 @@
 
 - `plot_all_decel.py` : plots all calibrated accelerations found in a folder
 
-- `plot_two_trips.py` allows to compare two recordings, both for calibrated and uncalibrated data
+- `plot_trips_selection.py` allows to compare a selection of trips, both for calibrated/uncalibrated and raw/filtered data
+
+- `plot_FFT_single_trip.py`: plots the FFT of calibrated accel of a single trip
 
 
 **Identifying stops from acceleration recordings**
@@ -17,6 +19,8 @@
 - `find_jolts.py` : second attempt, using "jolt-back" peaks => seems better
 (see ep.3 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep3-eric-cabrol-lynie)
 A file `timestamps.txt` is generated in each folder. It still requires a manual validation, then the file must be saved as `timestamps_validated.txt`. Note that the calibrated acceleration could be useful, because it reaches consistently 3m/s peaks that could be useful to identify the stops. 
+
+- `find_stops_from_trip_name.py` : 
 
 
 
