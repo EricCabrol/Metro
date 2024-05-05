@@ -1,7 +1,7 @@
-fs = {"calibrated" : 50, "uncalibrated" : 400 }
-print(fs.keys())
+import os
+from pathlib import Path
 
-trips = ('L4_Montparnasse_-_Reaumur_-_soft-2024-03-29_08-07-51',
-         'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45')
-
-print('  VS  '.join([x for x in trips]))
+data_folder = Path('./data_test')
+subfolders = [ f.path for f in os.scandir(data_folder) if f.is_dir() ]
+for trip in subfolders:
+    print(Path(trip).stem)

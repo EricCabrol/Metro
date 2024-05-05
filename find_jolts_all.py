@@ -4,7 +4,9 @@
 import pandas as pd
 import plotly.graph_objects as go
 from pathlib import Path
-import os 
+import os
+import re
+from shutil import copy
 
 # data_folder = Path('./data')
 data_folder = Path('./data_test')
@@ -15,11 +17,14 @@ fs_calibrated = 50 # sampling frequency
 min_amplitude_jolt = 1.5 # minimum acceleration to consider the peak as a jolt (m/s^2)
 min_amplitude_restart = 0.5 # minimum acceleration to consider that the metro restarts (m/s^2)
 min_stop_duration = 20 # min duration before peak and restart (s)
+nok_trips = []
 
-for sub in subfolders:
+for trip in subfolders:
 
-    print(sub)
-    df = pd.read_csv(Path(sub) / 'Accelerometer.csv')
+    print(trip)
+    # TODO : continue loop when timestamps_valid.txt already exists
+    # TODO 2 : modify accel sign when Yinv
+    df = pd.read_csv(Path(trip) / 'Accelerometer.csv')
     df['time'] = df['time']-df['time'][0] # Reset initial time
 
     begin = 0 # init
@@ -27,8 +32,10 @@ for sub in subfolders:
     df['stop'] = 0 # initialize a new column, boolean like (True if metro stopped)
     stopped = False
 
-    with open(Path(sub) / "timestamps.txt", mode="w") as output_file:
-        output_file.write("Timestamps for trip "+sub+"\n")
+    # WRITE TIMESTAMPS
+
+    with open(Path(trip) / "timestamps.txt", mode="w") as output_file:
+        output_file.write("Timestamps for trip "+trip+"\n")
         for ind in df.index:
             accel = df['y'][ind]
             if (accel > min_amplitude_jolt) :
@@ -41,16 +48,31 @@ for sub in subfolders:
                 output_file.write(str(df['time'][begin]/1e9)+" stop\n")
                 output_file.write(str(df['time'][end]/1e9)+" start\n")
 
-    # fig = go.Figure()
+    # PLOT ACCEL AND TIMESTAMPS
 
-    # fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['y'], name = 'acceleration')) 
-    # fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['stop'], name = 'stop')) 
+    fig = go.Figure()
 
-    # fig.update_layout(
-    #     title="Calibrated acceleration and stops for trip "+trip_1,
-    #     xaxis_title="time (s)",
-    #     yaxis_title="acceleration (m/s^2)",
-    #     yaxis_range=[-4,4]
-    # )
+    fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['y'], name = 'acceleration')) 
+    fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['stop'], name = 'stop')) 
 
-    # fig.show()
+    fig.update_layout(
+        title="Calibrated acceleration and stops for trip "+trip,
+        xaxis_title="time (s)",
+        yaxis_title="acceleration (m/s^2)",
+        yaxis_range=[-4,4]
+    )
+
+    fig.show()
+
+    # ASK USER INPUT FOR CONFIRMATION
+
+    valid = input("Are the timestamps OK ? (y/n)")
+
+    if re.match("[yY]",valid):
+        copy(Path(trip) / "timestamps.txt",Path(trip) / "timestamps_valid.txt")
+    else:
+        nok_trips.append(Path(trip).stem)
+
+
+print("List of NOK trips")
+print(nok_trips)

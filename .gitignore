@@ -4,3 +4,4 @@ old_git.7z
 .conda/*
 z*.py
 .venv/*
+data_test/*
