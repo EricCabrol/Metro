@@ -20,8 +20,15 @@
 (see ep.3 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep3-eric-cabrol-lynie)
 A file `timestamps.txt` is generated in each folder. It still requires a manual validation, then the file must be saved as `timestamps_validated.txt`. Note that the calibrated acceleration could be useful, because it reaches consistently 3m/s peaks that could be useful to identify the stops. 
 
-- `find_stops_from_trip_name.py` : 
+- `find_jolts_all.py` : WIP to detect jolts in all recordings of a given directory
 
+**Identifying stops from recordings names**
+
+- `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module
+
+**Module**
+
+- `metro.py` : contains a class Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class ? 
 
 
 ## Utilities
