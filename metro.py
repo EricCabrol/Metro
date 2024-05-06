@@ -15,15 +15,17 @@ class Trip:
 
     def get_start(self):
         try:
-            trip_start = re.search('^L\d+[-_]*([\w_]+)_-_',self.name)
-            return(trip_start.group(1))
+            bits = self.name.split('_-',2)
+            trip_start = re.search('^L\d+_*-*(.+)',bits[0])
+            return(re.sub('_',' ',trip_start.group(1)))
         except:
             print("Initial station not found when processing "+self.name)
             
     def get_end(self):
         try:
-            trip_end = re.search('^L\d+[-_]*([\w_]+)_-_([\w_]+)_-_',self.name)
-            return(trip_end.group(2))
+            bits = self.name.split('_-',2)
+            trip_end = re.sub('^_','',bits[1])
+            return(trip_end)
         except:
             print("Terminal station not found when processing "+self.name)
     
@@ -66,12 +68,10 @@ class Trip:
 
 if __name__=='__main__':
 
-    trip_list = ['L4_Montparnasse_-_Reaumur_-_bag-2024-01-25_12-16-45',
-                 'L4_Reaumur_-_Montparnasse_-_bag-2024-01-25_12-16-45']
+    trip_list = ['L4_Les_Halles_-_Montparnasse_-_leg_-_brutal_-2024-04-05_17-21-10']
     for t in trip_list:
         print(t)
         trip = Trip(t)
-        # trip = Trip('L4_Montparnasse_-_St-Michel_-_bag-2024-01-25_12-16-45')
         print(trip.get_line())
         print(trip.get_start())
         print(trip.get_end())
