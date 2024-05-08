@@ -29,6 +29,10 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 
 - `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module **TODO**  
 
+**Cut trips (once stops are validated)**
+
+- `cut_trips.py` : could be merged with `check_timestamps.py`
+
 **Module**
 
 - `metro.py` : contains a class Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class ? 
