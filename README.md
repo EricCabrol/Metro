@@ -13,18 +13,21 @@
 
 **Identifying stops from acceleration recordings**
 
-- `find_constant_time_window.py` was the first attempt to identify time windows where accel is constant. Leads to false positives
+- `find_constant_accel.py` was the first attempt to identify time windows where accel is constant. Leads to false positives
 (see ep.2 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep2-eric-cabrol-tq7ye/)
 
 - `find_jolts.py` : second attempt, using "jolt-back" peaks => seems better
 (see ep.3 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep3-eric-cabrol-lynie)
-A file `timestamps.txt` is generated in each folder. It still requires a manual validation, then the file must be saved as `timestamps_validated.txt`. Note that the calibrated acceleration could be useful, because it reaches consistently 3m/s peaks that could be useful to identify the stops. 
+A file `timestamps.txt` is generated in each folder. It still requires a manual validation, then the file must be saved as `timestamps_valid.txt`.
 
-- `find_jolts_all.py` : WIP to detect jolts in all recordings of a given directory
+- `find_jolts_all.py` : detect jolts in all recordings of a given directory
+=> in fact there are as many difficulties to identify the stops, so I switched back to the constant accel solution
+
+- `find_constant_accel_all.py` : asks for confirmation after each trip, which allows to modify the timestamps file before validating
 
 **Identifying stops from recordings names**
 
-- `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module
+- `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module **TODO**  
 
 **Module**
 
