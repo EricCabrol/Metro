@@ -1,7 +1,4 @@
-import os
-from pathlib import Path
+import metro
 
-data_folder = Path('./data_test')
-subfolders = [ f.path for f in os.scandir(data_folder) if f.is_dir() ]
-for trip in subfolders:
-    print(Path(trip).stem)
+trip = metro.Trip('L4_Montparnasse_-_Reaumur_-_bag-2024-01-25_12-16-45')
+print(trip.get_line())
