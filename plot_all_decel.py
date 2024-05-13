@@ -6,8 +6,8 @@ from pathlib import Path
 
 # Parse all directories in data folder
 
-data_folder = Path('./data')
-# data_folder = Path('./data_test')
+# data_folder = Path('./data')
+data_folder = Path('./data/L4/Chatelet_Cite')
 subfolders = [ f.path for f in os.scandir(data_folder) if f.is_dir() ]
 
 

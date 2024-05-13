@@ -2,7 +2,7 @@
 
 ## Main scripts
 
-**Plotting data**
+### Plotting data
 
 - `plot_all_decel.py` : plots all calibrated accelerations found in a folder
 
@@ -11,7 +11,7 @@
 - `plot_FFT_single_trip.py`: plots the FFT of calibrated accel of a single trip
 
 
-**Identifying stops from acceleration recordings**
+### Identifying stops from acceleration recordings
 
 - `find_constant_accel.py` was the first attempt to identify time windows where accel is constant. Leads to false positives
 (see ep.2 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep2-eric-cabrol-tq7ye/)
@@ -25,17 +25,19 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 
 - `find_constant_accel_all.py` : asks for confirmation after each trip, which allows to modify the timestamps file before validating
 
-**Identifying stops from recordings names**
+### Identifying stops from recordings names
 
 - `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module **TODO**  
 
-**Cut trips (once stops are validated)**
+### Cut trips (once stops are validated)
 
 - `cut_trips.py` : could be merged with `check_timestamps.py`
 
-**Module**
 
-- `metro.py` : contains a class Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class ? 
+
+## Module
+
+- `metro.py` : contains a class named Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class (eg sampling frequency) ? 
 
 
 ## Utilities
