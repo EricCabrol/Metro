@@ -1,0 +1,5 @@
+Timestamps for trip data_test\L8_Madeleine_-_La_Motte_Yinv-2024-02-09_16-30-00
+145.7010934 stop
+169.9001579 start
+258.7803394 stop
+324.7318986 start

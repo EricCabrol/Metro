@@ -1,0 +1,13 @@
+Timestamps for trip data_test\L4_Chatelet_-_Montparnasse_-_brutal-2024-03-29_18-03-15
+67.2467953 stop
+87.2645013 start
+129.978357 stop
+159.5751194 start
+207.9190689 stop
+232.9999728 start
+276.0876055 stop
+298.5098407 start
+350.274367 stop
+370.5071424 start
+417.0521165 stop
+511.2558462 start

@@ -1,0 +1,15 @@
+Timestamps for trip L4_Les_Halles_-_Montparnasse_-_brutal_avt_Odeon_-_side_-_89n2_1013-2024-05-06_16-43-20
+55.4634982 stop
+89.3081995 start
+148.6895449 stop
+167.9140062 start
+212.0275485 stop
+236.6405268 start
+290.02813 stop
+314.9857228 start
+359.2973955 stop
+380.5844425 start
+433.4929505 stop
+452.7933409 start
+500.6630605 stop
+518.1379507 start
