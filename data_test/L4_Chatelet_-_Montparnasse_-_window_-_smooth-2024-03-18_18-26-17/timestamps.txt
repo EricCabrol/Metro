@@ -1,0 +1,3 @@
+Timestamps for trip data_test\L4_Chatelet_-_Montparnasse_-_window_-_smooth-2024-03-18_18-26-17
+403.937506 stop
+425.0878364 start

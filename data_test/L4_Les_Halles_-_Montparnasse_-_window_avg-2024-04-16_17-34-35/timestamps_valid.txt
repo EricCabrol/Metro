@@ -1,0 +1,15 @@
+Timestamps for trip L4_Les_Halles_-_Montparnasse_-_window_avg-2024-04-16_17-34-35
+62.0052222 stop
+94.808062 start
+150.0652314 stop
+168.639727 start
+212.6176292 stop
+240.0342482 start
+289.5773217 stop
+312.839963 start
+357.4079194 stop
+377.6406602 start
+431.0308554 stop
+449.416352 start
+497.6877363 stop
+517.243479 start

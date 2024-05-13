@@ -16,8 +16,8 @@ class Trip:
     def get_start(self):
         try:
             bits = self.name.split('_-',2)
-            trip_start = re.search('^L\d+_*-*(.+)',bits[0])
-            return(re.sub('_',' ',trip_start.group(1)))
+            trip_start = re.search('^L\d+_*-*(.+)',bits[0]) # matches L4_station or L4-station or L4_-station
+            return(re.sub('_',' ',trip_start.group(1))) # replaces underscores by spaces inside station names (ex : "Les Halles")
         except:
             print("Initial station not found when processing "+self.name)
             
@@ -38,12 +38,12 @@ class Trip:
 
     def get_stations(self): # TODO : work in progress
         stations = {
-        'L3' : ('Saint-Lazare','Havre-Caumartin','Opera','Quatre-Septembre','Bourse','Sentier','Reaumur'),
+        'L3' : ['Europe','St-Lazare','Havre-Caumartin','Opera','Quatre-Septembre','Bourse','Sentier','Reaumur'],
         'L4' : ['Montparnasse','St-Placide','St-Sulpice','St-Germain','Odeon','St-Michel','Cite','Chatelet','Les Halles','Etienne Marcel','Reaumur'],
-        'L6' : ('Dupleix','La Motte','Cambronne','Sevres-Lecourbe','Pasteur','Montparnasse','Edgar Quinet','Raspail'),
-        'L8' : ('La Motte','Ecole Militaire','La Tour-Maubourg','Invalides','Concorde','Madeleine'),
-        'L12' : ('Montparnasse','Falguiere','Pasteur','Volontaires'),
-        'L13' : ('Pernety','Gaite','Montparnasse','Duroc','St Francois Xavier','Varenne','Invalides','Champs-Elysees','Miromesnil','St-Lazare')
+        'L6' : ['Dupleix','La Motte','Cambronne','Sevres-Lecourbe','Pasteur','Montparnasse','Edgar Quinet','Raspail'],
+        'L8' : ['La Motte','Ecole Militaire','La Tour-Maubourg','Invalides','Concorde','Madeleine'],
+        'L12' : ['Montparnasse','Falguiere','Pasteur','Volontaires'],
+        'L13' : ['Pernety','Gaite','Montparnasse','Duroc','St-Francois-Xavier','Varenne','Invalides','Champs-Elysees','Miromesnil','St-Lazare']
         }
         try:
             trip_start = self.get_start()
@@ -68,7 +68,7 @@ class Trip:
 
 if __name__=='__main__':
 
-    trip_list = ['L4_Les_Halles_-_Montparnasse_-_leg_-_brutal_-2024-04-05_17-21-10']
+    trip_list = ['L3_Sentier_-_St-Lazare_-2024-05-03_17-04-03']
     for t in trip_list:
         print(t)
         trip = Trip(t)

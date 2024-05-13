@@ -32,7 +32,7 @@ for trip in subfolders:
     # if the timestamps have already been validated skip to next trip
     if os.path.exists(Path(trip) / "timestamps_valid.txt"):
         continue
-    # TODO : modify accel sign when Yinv
+
     df = pd.read_csv(Path(trip) / 'Accelerometer.csv')
     df['time'] = df['time']-df['time'][0] # Reset initial time
 
