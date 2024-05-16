@@ -27,7 +27,7 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 
 ### Identifying stops from recordings names
 
-- `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module **TODO**  
+- previously done in `find_stops_from_trip_name.py`, now in `metro.py` module  
 
 ### Cut trips (once stops are validated)
 
