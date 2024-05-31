@@ -9,7 +9,8 @@ from dateutil import parser
 
 # INIT
 
-path = Path('./data/L4/Chatelet_Cite/')
+path = Path('./data/L4/Les Halles_Etienne Marcel/')
+[begin,end] = (path.stem).split('_')
 files = path.glob('*_Accelerometer.csv')
 fs = {"calibrated" : 50, "uncalibrated" : 400 } # Sampling frequencies (Hz)
 # Filter parameters
@@ -31,15 +32,21 @@ for file in files:
     day = parser.parse(get_day(filename))
     legend = day.strftime('%d %b %Y')    
     try:
-        df = pd.read_csv(Path(file)) # rebuild Path object is required  (because file isn't one)
+        df = pd.read_csv(Path(file)) # rebuild Path object is required (because file isn't one)
         df['time'] = df['time']-df['time'][0] # Reset initial time of the recording to 0
+        # for tmp in range(2,6):
+        #     b, a = butter(N, tmp/10, 'low',fs=fs['calibrated']) # low pass filter 
+        #     # fig.add_trace(go.Scatter(x = df['time']/1e9, y = filtfilt(b, a, df['y']), line=dict(color='blue',width=3),name = legend+" filtered "+str(tmp/10)+" Hz"))
+        #     fig.add_trace(go.Scatter(x = df['time']/1e9, y = filtfilt(b, a, df['y']), name = legend+" filtered "+str(tmp/10)+" Hz"))
         fig.add_trace(go.Scatter(x = df['time']/1e9, y = filtfilt(b, a, df['y']), name = legend))
-        # fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['y'], name = file))
+        # fig.add_trace(go.Scatter(x = df['time']/1e9, y = df['y'], line=dict(color='blue',dash='dash'),name = legend))
     except:
-        print("Couldn't read "+file)
+        print("Couldn't read "+legend)
+    # break 
 
 fig.update_layout(
-    title = 'Paris Line 4 - from Châtelet to Cité',
+    title = 'Paris Line 4 - from '+begin+' to '+end+' - '+str(Wn)+' Hz lowpass filter',
+    # title = 'Paris Line 4 - from Châtelet to Cité',
     xaxis_title = "time (s)",
     yaxis_title = "acceleration (m/s^2)",    
     yaxis_range=[-2,2]
