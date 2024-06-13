@@ -24,6 +24,7 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 => in fact there are as many difficulties to identify the stops, so I switched back to the constant accel solution
 
 - `find_constant_accel_all.py` : asks for confirmation after each trip, which allows to modify the timestamps file before validating
+30th May 2024 : still often fails with "Could not find annotations" even when the number of stops seems OK #TODO
 
 ### Identifying stops from recordings names
 
@@ -31,7 +32,9 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 
 ### Cut trips (once stops are validated)
 
-- `cut_trips.py` : could be merged with `check_timestamps.py`
+- `check_timestamps.py` : only checks that there are as many stops in the timestamps file as there should be from the trip name
+
+- `cut_trips.py` : cuts the trip into sections. Could be merged with `check_timestamps.py` #TODO 
 
 
 
@@ -42,6 +45,7 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 
 ## Utilities
 
+- `study_resampling.py` checks the influence of the initial sampling frequency on the filtered results
 
 NB : zip files exported from SensorLogger must be manually downloaded from Google Drive into `zip` folder
 
