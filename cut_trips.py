@@ -5,7 +5,7 @@ import metro
 import pandas as pd
 
 data_folder = Path('./data')
-subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Les_Halles.+leg',f.path)) ] # TEST
+subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Montparnasse_-_R',f.path)) ] # TODO : remove test
 
 print("Number of trips : ",len(subfolders))
 
@@ -15,7 +15,13 @@ for trip in subfolders:
     print(trip_name)
 
     # Read data 
-    df = pd.read_csv(Path(trip) / 'AccelerometerUncalibrated.csv')
+    df1 = pd.read_csv(Path(trip) / 'AccelerometerUncalibrated.csv')
+    df2 = pd.read_csv(Path(trip) / 'Accelerometer.csv')
+
+    # Invert the sign of Y accel if the trip name requires it
+    if re.search("Yinv",trip_name):
+        df1['y'] = -1*df1['y']
+        df2['y'] = -1*df2['y']
 
     # Get trip attributes
     tripObj = metro.Trip(trip_name)
@@ -33,19 +39,18 @@ for trip in subfolders:
         for line in lines:
             if re.search("stop",line):
                 t_stop = float(line.split(' ')[0])
-                # section_filename = trip_line + "_" + trip_stations[i] + "_" + trip_stations[i+1] + "_" + trip_date
                 section = trip_stations[i] + "_" + trip_stations[i+1]
-                filename = trip_date + ".csv"
                 print(section)
+                filename1 = trip_date + "_AccelerometerUncalibrated.csv"
+                filename2 = trip_date + "_Accelerometer.csv"
                 i = i+1
-                # print(df[(df['time']>begin*1e9) & (df['time']<t_stop*1e9)].head(3))
-                # print()
-                # print(df[(df['time']>begin*1e9) & (df['time']<t_stop*1e9)].tail(3))
-                # print()
-                filepath = data_folder / trip_line / section / filename
-                filepath.parent.mkdir(parents=True, exist_ok=True)  # create parent folder if doesn't exist
-                df[(df['seconds_elapsed']>begin) & (df['seconds_elapsed']<t_stop)].to_csv(filepath,index=False)
-            if re.search("start",line):
+                # creating a folder hierarchy such as L4 / Chatelet-Cite / 2024-04-05_17-21-10_AccelerometerUncalibrated.csv 
+                filepath1 = data_folder / trip_line / section / filename1
+                filepath2 = data_folder / trip_line / section / filename2
+                filepath1.parent.mkdir(parents=True, exist_ok=True)  # create parent folder if doesn't exist
+                df1[(df1['seconds_elapsed']>begin) & (df1['seconds_elapsed']<t_stop)].to_csv(filepath1,index=False)
+                df2[(df2['seconds_elapsed']>begin) & (df2['seconds_elapsed']<t_stop)].to_csv(filepath2,index=False)
+            if re.search("start",line): # switch to next section
                 begin = float(line.split(' ')[0])
                 
     else:

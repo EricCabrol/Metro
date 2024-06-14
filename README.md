@@ -2,7 +2,7 @@
 
 ## Main scripts
 
-**Plotting data**
+### Plotting data
 
 - `plot_all_decel.py` : plots all calibrated accelerations found in a folder
 
@@ -11,7 +11,7 @@
 - `plot_FFT_single_trip.py`: plots the FFT of calibrated accel of a single trip
 
 
-**Identifying stops from acceleration recordings**
+### Identifying stops from acceleration recordings
 
 - `find_constant_accel.py` was the first attempt to identify time windows where accel is constant. Leads to false positives
 (see ep.2 : https://www.linkedin.com/pulse/data-analysis-paris-metro-ep2-eric-cabrol-tq7ye/)
@@ -24,22 +24,28 @@ A file `timestamps.txt` is generated in each folder. It still requires a manual 
 => in fact there are as many difficulties to identify the stops, so I switched back to the constant accel solution
 
 - `find_constant_accel_all.py` : asks for confirmation after each trip, which allows to modify the timestamps file before validating
+30th May 2024 : still often fails with "Could not find annotations" even when the number of stops seems OK #TODO
 
-**Identifying stops from recordings names**
+### Identifying stops from recordings names
 
-- `find_stops_from_trip_name.py` : test with difflib SequenceMatcher.To be reincorporated in `metro.py` module **TODO**  
+- previously done in `find_stops_from_trip_name.py`, now in `metro.py` module  
 
-**Cut trips (once stops are validated)**
+### Cut trips (once stops are validated)
 
-- `cut_trips.py` : could be merged with `check_timestamps.py`
+- `check_timestamps.py` : only checks that there are as many stops in the timestamps file as there should be from the trip name
 
-**Module**
+- `cut_trips.py` : cuts the trip into sections. Could be merged with `check_timestamps.py` #TODO 
 
-- `metro.py` : contains a class Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class ? 
+
+
+## Module
+
+- `metro.py` : contains a class named Trip to retrieve all useful information from the trip name. Shall I also manage quantitative data with this class (eg sampling frequency) ? 
 
 
 ## Utilities
 
+- `study_resampling.py` checks the influence of the initial sampling frequency on the filtered results
 
 NB : zip files exported from SensorLogger must be manually downloaded from Google Drive into `zip` folder
 
