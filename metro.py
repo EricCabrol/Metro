@@ -1,6 +1,25 @@
 import re
 import unidecode
 from difflib import SequenceMatcher
+import numpy as np
+import pandas as pd
+
+
+class Record:
+
+    def __init__(self,file) -> None:
+        self.file = file
+
+    def get_frequency(self):
+        try:
+            df = pd.read_csv(self.file)
+            sampling_rate = 1 / np.diff(df['seconds_elapsed'])
+            return(np.mean(sampling_rate))
+        except:
+            print("Could not compute sample time for file "+self.file)      
+
+
+
 
 class Trip:
 
