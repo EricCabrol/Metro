@@ -7,11 +7,10 @@ from pathlib import Path
 
 # User selection
 
-trips = ('L4_Montparnasse_-_Reaumur_-_soft-2024-03-29_08-07-51',
-         'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45')
+trips = ['L4_Montparnasse_-_Reaumur_-_bag-2024-01-25_12-16-45']
 
 calib_choices = {"calibrated":True,"uncalibrated":False}
-filter_choices = {"filtered":True,"unfiltered":False}
+filter_choices = {"filtered":False,"unfiltered":True}
 
 t_max = 900 # (s) can be used to truncate the trips (to reduce processing time)
 
