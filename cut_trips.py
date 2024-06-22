@@ -5,7 +5,7 @@ import metro
 import pandas as pd
 
 data_folder = Path('./data')
-subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Montparnasse_-_R',f.path)) ] # TODO : remove test
+subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L12_Montparnasse_-_V',f.path)) ] # TODO : remove test
 
 print("Number of trips : ",len(subfolders))
 

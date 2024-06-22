@@ -13,7 +13,7 @@ data_folder = Path('./data')
 # data_folder = Path('./data_test')
 
 # subfolders = [ f.path for f in os.scandir(data_folder) if f.is_dir() ]
-subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Les_Halles',f.path)) ] # TEST
+subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Montparnasse',f.path)) ] # TEST
 
 
 # INITIALISATION

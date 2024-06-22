@@ -1,2 +1,0 @@
-version,device name,recording epoch time,recording time,recording timezone,platform,appVersion,device id,sensors,sampleRateMs,standardisation
-3,Pixel 4 XL,1714063878377,2024-04-25_16-51-18,Europe/Paris,android,1.31.4,fc85662c-13cf-4130-b4fa-680523b125bc,Accelerometer|Magnetometer|Annotation|TotalAcceleration|MagnetometerUncalibrated|AccelerometerUncalibrated,0|0||0|0|0,false

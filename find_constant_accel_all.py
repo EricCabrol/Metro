@@ -14,9 +14,7 @@ import metro
 
 data_folder = Path('./data')
 
-# subfolders = [ f.path for f in os.scandir(data_folder) if f.is_dir() ]
-subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L4_Les_Halles',f.path)) ] # TEST
-# subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L3',f.path)) ] # TEST
+subfolders = [ f.path for f in os.scandir(data_folder) if (f.is_dir() and re.search('L12_Montparnasse_-_V',f.path)) ] # TEST
 
 # INITIALISATION
 
@@ -27,8 +25,7 @@ nok_trips = [] # list of trips for which timestamps will require a manual valida
 
 # Filter parameters
 N = 4 # order of the filter
-Wn = 1 # cutoff frequency
-# b1, a1 = butter(N, Wn, 'low',fs=50) # Calibrated accel is sampled at 50 Hz
+Wn = 0.5 # cutoff frequency
 b2, a2 = butter(N, Wn, 'low',fs=fs_uncalibrated) # Uncalibrated accel is sampled at 400 Hz
 
 # LOOP ON TRIPS

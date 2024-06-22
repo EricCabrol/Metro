@@ -11,7 +11,7 @@ from pathlib import Path
 
 data_folder = Path('./data')
 
-trip_1 = 'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45'
+trip_1 = 'L4_Montparnasse_-_Reaumur_-_bag-2024-01-25_12-16-45'
 
 fs_calibrated = 50 # sampling frequency
 min_amplitude_jolt = 1.5 # minimum acceleration to consider the peak as a jolt (m/s^2)

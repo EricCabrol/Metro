@@ -5,3 +5,4 @@ old_git.7z
 z*.py
 .venv/*
 __pycache__/*
+test*

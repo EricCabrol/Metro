@@ -39,6 +39,8 @@ df2 = df2.set_index('DateTime')
 offset_correction = 0.25
 gravity = 9.81 
 
+# PLOT NON-FILTERED DATA
+
 fig = go.Figure()
 fig.add_trace(go.Scatter(x = df.index, y = df['gFy'] * gravity + offset_correction, name = 'A33'))
 fig.add_trace(go.Scatter(x = df2.index, y = df2['y'], name = 'Pixel 4 XL'))
@@ -52,6 +54,7 @@ fig.update_layout(
 )
 fig.show()
 
+# PLOT FILTERED DATA
 
 # Filter parameters
 N = 4 # filter order
