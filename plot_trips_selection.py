@@ -7,11 +7,11 @@ from pathlib import Path
 
 # User selection
 
-trips = ('L4_Montparnasse_-_Reaumur_-_soft-2024-03-29_08-07-51',
-         'L4_Montparnasse_-_Reaumur_bag-2024-01-25_12-16-45')
+trips = ('L12_Montparnasse_-_Volontaires_-_a32-2024-05-17_16-57-10',
+         'L12_Montparnasse_-_Volontaires_-_a32-2024-05-17_16-57-10')
 
 calib_choices = {"calibrated":True,"uncalibrated":False}
-filter_choices = {"filtered":True,"unfiltered":False}
+filter_choices = {"filtered":False,"unfiltered":True}
 
 t_max = 900 # (s) can be used to truncate the trips (to reduce processing time)
 
@@ -19,7 +19,7 @@ t_max = 900 # (s) can be used to truncate the trips (to reduce processing time)
 
 data_folder = Path('./data')
 accel_files = {"calibrated":"Accelerometer.csv","uncalibrated":"AccelerometerUncalibrated.csv"}
-fs = {"calibrated" : 50, "uncalibrated" : 400 } # Sampling frequencies (Hz)
+fs = {"calibrated" : 50, "uncalibrated" : 100 } # Sampling frequencies (Hz)
 
 # Filter parameters
 N = 4 # filter order
@@ -31,7 +31,11 @@ for trip in trips:
 
     for calib_key in calib_choices.keys():
         if calib_choices[calib_key] is True:
-            df = pd.read_csv(data_folder / trip / accel_files[calib_key])
+            try:
+                df = pd.read_csv(data_folder / trip / accel_files[calib_key])
+            except:
+                print(accel_files[calib_key]+" not found for trip "+trip)
+                continue
             df['time'] = df['time']-df['time'][0]
             df = df[df['time'] < t_max*1e9] # Conversion to ns
             if filter_choices['unfiltered'] is True:
