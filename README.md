@@ -1,8 +1,7 @@
 # Post-processing of Sensor Logger recordings for metro braking data analysis
 
 Some trains of Paris metro line 4 brake really hard, which sometimes can almost become dangerous for the passengers if they don't hang on.
-I wanted to check if i could identify which level of deceleration becomes perceived as "too harsh". 
-So I decided to record the trips using an Android app called SensorLogger. 
+I wanted to check if i could identify which level of deceleration gets perceived as "too harsh", so I decided to record the trips using an Android app called SensorLogger, and do some signal processing, playing with Python, Pandas, SciPy ... 
 
 More comments can be found on the LinkedIn posts I wrote : 
 - [episode 01 : recording trips](https://www.linkedin.com/pulse/data-analysis-paris-metro-ep1-eric-cabrol-01kie)
