@@ -10,7 +10,7 @@ class Record:
     def __init__(self,file) -> None:
         self.file = file
 
-    def get_frequency(self):
+    def get_frequency(self): # returns frequency of a csv file recorded with SensorLogger
         try:
             df = pd.read_csv(self.file)
             sampling_rate = 1 / np.diff(df['seconds_elapsed'])
