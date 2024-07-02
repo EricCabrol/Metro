@@ -20,6 +20,11 @@ class Record:
 
 
 
+"""
+Example usage
+tripObj = metro.Trip('L3_Opera_-_Sentier_-2024-02-02_07-55-00')
+trip_stations = tripObj.get_stations()
+"""
 
 class Trip:
 
