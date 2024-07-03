@@ -1,15 +1,66 @@
 import pandas as pd
 import plotly.graph_objects as go
-import numpy as np
 from scipy.signal import filtfilt, butter
 from pathlib import Path
-import metro 
+import metro
+import glob
+import re
+import os 
 
 
-# User selection
 
-data_folder = Path('./data_test')
-trips = ('L4_Etienne_Marcel_-_Montparnasse_-_brutal_2_stops_annotated-2024-06-24_17-22-44','dummy')
+# Problem specific variables
+
+data_folder = './data/'
+# records = glob.glob(data_folder+'L*')
+records = [os.path.basename(x) for x in glob.glob(data_folder+'L*_') if len(os.path.basename(x)) > 4] # if len > 4 to remove "non-trips"
+
+# SHOW AVAILABLE RECORDINGS
+
+
+def get_date(name):
+    try:
+        date_match = re.search('\d{4}-\d{2}-\d{2}',name)
+        return(date_match.group(0))
+    except:
+        print("Couldn't parse date in folder "+name)
+        return('1900-01-01')
+
+
+def reformat_record(folder,name): # used only for readability of the output
+    # trip_name = name[len(folder)+1:] # remove source folder from full name
+    tripObj = metro.Trip(name) 
+    try:
+        trip_date = (re.search('\d{4}-\d{2}-\d{2}',name)).group(0)
+    except:
+        trip_date = '1900-01-01'
+
+    return (trip_date, tripObj.get_line(), tripObj.get_start(), tripObj.get_end())
+
+for counter, record in enumerate(sorted(records,key=get_date, reverse=True)): #  reverse chronological order
+    print (counter, '\t', *reformat_record(data_folder,record)) # unpacking the list with the * operator
+
+
+
+# LET THE USER SELECT THE TRIPS HE WANTS TO PLOT
+
+def get_ids_from_input():
+    selection = input("Enter selection:(ex : 1,3-5)\n")
+    fields = selection.split(',')
+    ids = []
+    for field in fields:
+        if re.search('-',field):
+            tmp = field.split('-')
+            ids.extend(range(int(tmp[0]),int(tmp[1])+1))
+        else:
+            ids.append(field)
+    return(ids)
+
+
+ids = get_ids_from_input()
+trips = [sorted(records,key=get_date, reverse=True)[int(i)] for i in ids] # TODO : fix error ... or revert
+
+# trips = ('L4_Etienne_Marcel_-_Montparnasse_-_brutal_2_stops_annotated-2024-06-24_17-22-44','dummy')
 
 # Do we plot calibrated, uncalibrated, filtered or unfiltered data ? 
 
