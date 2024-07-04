@@ -82,6 +82,7 @@ Wn = 2 # (Hz) cutoff frequency
 fig = go.Figure()
 
 for trip in trips:
+    print('Processing trip '+trip)
 
     for calib_key in calib_choices.keys(): 
         if calib_choices[calib_key] is True:
