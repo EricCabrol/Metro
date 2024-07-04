@@ -82,6 +82,7 @@ Wn = 2 # (Hz) cutoff frequency
 fig = go.Figure()
 
 for trip in trips:
+    print('Processing trip '+trip)
 
     for calib_key in calib_choices.keys(): 
         if calib_choices[calib_key] is True:
@@ -93,7 +94,7 @@ for trip in trips:
             try: # Extract sampling frequency from the record
                 record = metro.Record(data_path / trip / accel_files[calib_key])
                 sampling_frequency = record.get_frequency()
-                print('Identified sampling frequency = '+sampling_frequency+' for trip'+trip)
+                print('Identified sampling frequency = '+f"{sampling_frequency:.1f}"+' for trip '+trip)
             except:
                 print('could not identify sampling frequency for trip '+trip)
             
