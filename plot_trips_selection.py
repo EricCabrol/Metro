@@ -15,7 +15,7 @@ data_folder = "./data/"
 data_path = Path(data_folder) # used later in the script
 # if len > 4 condtion added to exclude "non-trip" folders such as L4 or L13 that contain individual sections of each line
 records = [os.path.basename(x) for x in glob.glob(data_folder+'L*') if len(os.path.basename(x)) > 4]
-print(records)
+# print(records)
 
 # SHOW AVAILABLE RECORDINGS
 
@@ -94,7 +94,7 @@ for trip in trips:
             try: # Extract sampling frequency from the record
                 record = metro.Record(data_path / trip / accel_files[calib_key])
                 sampling_frequency = record.get_frequency()
-                print('Identified sampling frequency = '+f"{sampling_frequency:.1f}"+' for trip '+trip)
+                print('Identified sampling frequency = '+f"{sampling_frequency:.1f} Hz"+' for trip '+trip)
             except:
                 print('could not identify sampling frequency for trip '+trip)
             
