@@ -1,5 +1,10 @@
-trips = ['L4_Montparnasse_-_Reaumur_-_a33-2024-06-14_06-50-37']
+import os 
+import glob
 
+# Problem specific variables
 
-for trip in trips:
-    print(trip)
+data_folder = './data/'
+# records = glob.glob(data_folder+'L*')
+records = [os.path.basename(x) for x in glob.glob(data_folder+'L*') if len(os.path.basename(x)) > 3]
+
+print(records)
